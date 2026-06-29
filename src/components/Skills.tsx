@@ -54,23 +54,21 @@ export default function Skills() {
           {skillCategories.map((category, idx) => (
             <Card
               key={idx}
-              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/45 hover:bg-slate-900/30 transition-all duration-300 flex flex-col h-full group"
+              className="frosted-glass frosted-glass-hover flex flex-col h-full group text-center"
             >
-              <CardHeader className="p-6 pb-4">
-                <div className="flex items-center space-x-4.5 mb-3">
-                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300">
-                    {category.icon}
-                  </div>
-                  <CardTitle className="text-lg font-bold text-white leading-tight font-display tracking-wide uppercase">
-                    {category.title}
-                  </CardTitle>
+              <CardHeader className="p-6 pb-4 flex flex-col items-center">
+                <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 mb-3">
+                  {category.icon}
                 </div>
-                <p className="text-xs sm:text-sm text-muted-foreground font-sans">
+                <CardTitle className="text-lg font-bold text-white leading-tight font-display tracking-wide uppercase">
+                  {category.title}
+                </CardTitle>
+                <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-2">
                   {category.description}
                 </p>
               </CardHeader>
               <CardContent className="p-6 pt-0 flex-grow">
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap justify-center gap-2.5">
                   {category.skills.map((skill, sIdx) => (
                     <Badge
                       key={sIdx}

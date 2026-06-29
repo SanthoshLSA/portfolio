@@ -12,15 +12,6 @@ export default function Hero() {
       <div className="absolute bottom-1/4 right-1/4 h-[450px] w-[450px] rounded-full bg-primary/8 glow-blur -z-10 animate-pulse-slow duration-[10s]" />
 
       <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8 relative z-10">
-        {/* Status Badge */}
-        <div className="mx-auto mb-10 inline-flex items-center space-x-2.5 rounded-full border border-primary/25 bg-primary/5 px-5 py-2 text-xs sm:text-sm font-display font-semibold uppercase tracking-widest text-primary shadow-[0_0_15px_rgba(168,85,247,0.05)]">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          <span>Available for Internships</span>
-        </div>
-
         {/* Heading */}
         <h1 className="text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl font-display">
           <span className="block text-muted-foreground font-semibold text-xl sm:text-2xl uppercase tracking-widest mb-6">

@@ -64,7 +64,7 @@ export default function Achievements() {
 
                 <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed font-sans">
                   {cpPoints.map((point, pIdx) => (
-                    <li key={pIdx} className="text-justify">{point}</li>
+                    <li key={pIdx}>{point}</li>
                   ))}
                 </ul>
               </div>
@@ -99,7 +99,7 @@ export default function Achievements() {
                           </span>
                         </div>
                         <p className="text-xs sm:text-sm font-bold text-muted-foreground font-display uppercase tracking-widest">{item.role} • <span className="font-normal text-muted-foreground/85 font-sans lowercase tracking-normal">{item.meta}</span></p>
-                        <p className="text-sm text-muted-foreground/80 leading-relaxed font-sans mt-1.5 text-justify">{item.desc}</p>
+                        <p className="text-sm text-muted-foreground/80 leading-relaxed font-sans mt-1.5">{item.desc}</p>
                       </div>
                       
                       {item.verifyUrl && (

@@ -61,50 +61,50 @@
 
 :root {
   /* Rich Dark Slate-Purple Aesthetic Colors */
-  --background: oklch(0.09 0.015 285); /* Deep slate-purple instead of pitch-black */
+  --background: oklch(0.09 0.015 285); /* Deep slate-purple */
   --foreground: oklch(0.97 0.008 255);
   
-  --card: oklch(0.12 0.02 285 / 45%); /* Translucent card */
+  --card: rgba(255, 255, 255, 0.03); /* High-fidelity frosted glass opacity */
   --card-foreground: oklch(0.97 0.008 255);
   
-  --popover: oklch(0.10 0.018 285 / 80%);
+  --popover: rgba(15, 17, 26, 0.85);
   --popover-foreground: oklch(0.97 0.008 255);
   
   --primary: oklch(0.60 0.22 295); /* Electric Purple everywhere */
   --primary-foreground: oklch(0.99 0.005 0);
   
-  --accent: oklch(0.60 0.22 295); /* Accent matches primary purple */
+  --accent: oklch(0.60 0.22 295);
   --accent-foreground: oklch(0.99 0.005 0);
   
-  --secondary: oklch(0.14 0.02 285 / 60%);
+  --secondary: rgba(255, 255, 255, 0.06);
   --secondary-foreground: oklch(0.92 0.02 295);
   
   --muted: oklch(0.12 0.015 285);
   --muted-foreground: oklch(0.65 0.015 285);
   
-  --border: oklch(0.18 0.02 285 / 40%); /* Frosted border */
-  --input: oklch(0.18 0.02 285 / 40%);
-  --ring: oklch(0.60 0.22 295 / 60%); /* Purple ring focus */
-  --radius: 1rem;
+  --border: rgba(255, 255, 255, 0.08); /* Frosted border */
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: oklch(0.60 0.22 295 / 60%);
+  --radius: 1.25rem; /* Smoother squircle-like radius */
 }
 
 .dark {
   --background: oklch(0.09 0.015 285);
   --foreground: oklch(0.97 0.008 255);
-  --card: oklch(0.12 0.02 285 / 45%);
+  --card: rgba(255, 255, 255, 0.03);
   --card-foreground: oklch(0.97 0.008 255);
-  --popover: oklch(0.10 0.018 285 / 80%);
+  --popover: rgba(15, 17, 26, 0.85);
   --popover-foreground: oklch(0.97 0.008 255);
   --primary: oklch(0.60 0.22 295);
   --primary-foreground: oklch(0.99 0.005 0);
   --accent: oklch(0.60 0.22 295);
   --accent-foreground: oklch(0.99 0.005 0);
-  --secondary: oklch(0.14 0.02 285 / 60%);
+  --secondary: rgba(255, 255, 255, 0.06);
   --secondary-foreground: oklch(0.92 0.02 295);
   --muted: oklch(0.12 0.015 285);
   --muted-foreground: oklch(0.65 0.015 285);
-  --border: oklch(0.18 0.02 285 / 40%);
-  --input: oklch(0.18 0.02 285 / 40%);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
   --ring: oklch(0.60 0.22 295 / 60%);
 }
 
@@ -144,21 +144,22 @@
     linear-gradient(to bottom, rgba(168, 85, 247, 0.015) 1px, transparent 1px);
 }
 
-/* Glassmorphism utility panel */
-.glass-panel {
-  background: rgba(15, 17, 26, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.02);
+/* Frosted Glassmorphism Panel Class */
+.frosted-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.glass-panel-hover {
+.frosted-glass-hover {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel-hover:hover {
-  background: rgba(22, 25, 38, 0.55);
+.frosted-glass-hover:hover {
+  background: rgba(255, 255, 255, 0.06);
   border-color: rgba(168, 85, 247, 0.4);
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
 }
