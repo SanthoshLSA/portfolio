@@ -1,0 +1,86 @@
+"use client";
+
+import * as React from "react";
+import { Menu, X, Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const navItems = [
+    { name: "About", href: "#about" },
+    { name: "Experience", href: "#experience" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Education", href: "#education" },
+    { name: "Honors", href: "#achievements" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/50 backdrop-blur-md">
+      <div className="container mx-auto max-w-7xl flex h-14 items-center justify-between px-6 sm:px-10 lg:px-16">
+        {/* Logo */}
+        <a href="#" className="flex items-center space-x-2 text-foreground font-display font-bold tracking-wider hover:text-accent transition-colors">
+          <Terminal className="h-5 w-5 text-accent animate-pulse" />
+          <span className="bg-gradient-to-r from-accent via-white to-primary bg-clip-text text-transparent">
+            SANTHOSH.DEV
+          </span>
+        </a>
+
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center space-x-7 font-display">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-xs font-semibold uppercase tracking-widest text-muted-foreground hover:text-accent transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-accent after:transition-all hover:after:w-full"
+            >
+              {item.name}
+            </a>
+          ))}
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-accent/40 hover:bg-accent/10 hover:border-accent text-accent font-semibold tracking-wider text-xs uppercase"
+            asChild
+          >
+            <a href="#contact">Connect</a>
+          </Button>
+        </nav>
+
+        {/* Mobile Toggle */}
+        <div className="flex lg:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="inline-flex items-center justify-center p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="lg:hidden border-b border-white/5 bg-background/95 px-4 pt-2 pb-4 space-y-1 transition-all duration-300 font-display">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-2.5 rounded-md text-xs uppercase tracking-widest font-semibold text-muted-foreground hover:text-accent hover:bg-secondary/40 transition-colors"
+            >
+              {item.name}
+            </a>
+          ))}
+          <div className="pt-2 px-3">
+            <Button size="sm" className="w-full bg-accent hover:bg-accent/80 text-background font-bold tracking-wider uppercase text-xs" asChild>
+              <a href="#contact" onClick={() => setIsOpen(false)}>Connect</a>
+            </Button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
