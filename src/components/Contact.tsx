@@ -24,8 +24,8 @@ export default function Contact() {
     setSuccess(false);
     setError(false);
 
-    // Get the key from env or fallback to a default instruction
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
+    // Get the key from env or fallback to your verified key
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "dd9cb01d-ef09-4e3c-b41f-ea90d028978b";
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
