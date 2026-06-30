@@ -16,18 +16,48 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSuccess(false);
+    setError(false);
 
-    // Simulate direct backend submission (e.g. REST API / DB endpoint post)
-    setTimeout(() => {
+    // Get the key from env or fallback to a default instruction
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSuccess(true);
+        setFormState({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSuccess(false), 6000);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
       setIsSubmitting(false);
-      setSuccess(true);
-      setFormState({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSuccess(false), 6000);
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -189,6 +219,12 @@ export default function Contact() {
                 {success && (
                   <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
                     Message sent successfully! I will get back to you shortly.
+                  </div>
+                )}
+
+                {error && (
+                  <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
+                    Failed to send message. Please verify your access key.
                   </div>
                 )}
               </form>

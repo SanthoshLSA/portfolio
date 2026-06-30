@@ -3,13 +3,14 @@
 import * as React from "react";
 
 interface Particle {
-  type: "sparkle" | "explosion";
+  type: "sparkle" | "explosion" | "flare";
   x: number;
   y: number;
   vx: number;
   vy: number;
   color: string;
   size: number;
+  maxSize?: number; // Used for flares
   alpha: number;
 }
 
@@ -56,6 +57,9 @@ export default function FireworkParticles() {
         p.x += p.vx;
         p.y += p.vy;
         p.alpha -= 0.05;
+      } else if (p.type === "flare") {
+        p.size += (p.maxSize! - p.size) * 0.15;
+        p.alpha -= 0.04;
       } else {
         p.x += p.vx;
         p.y += p.vy;
@@ -70,11 +74,21 @@ export default function FireworkParticles() {
         ctx.save();
         ctx.globalAlpha = p.alpha;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = p.color;
-        ctx.fill();
+
+        if (p.type === "flare") {
+          ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+          ctx.strokeStyle = p.color;
+          ctx.lineWidth = 2.5;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+          ctx.stroke();
+        } else {
+          ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        }
         ctx.restore();
       }
     }
@@ -88,18 +102,20 @@ export default function FireworkParticles() {
   }, [updateAndDraw]);
 
   React.useEffect(() => {
+    // Disable all calculations completely on mobile viewports
+    if (window.innerWidth < 768) return;
+
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
     const handleMouseDown = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
       const target = e.target as HTMLElement;
 
       // Locate closest SVG symbol/icon
       const svg = target.closest("svg");
       if (svg) {
-        // Toggle the outline glow flare class
         svg.classList.remove("svg-flare-active");
-        // Force reflow to re-trigger animation
         void svg.getBoundingClientRect();
         svg.classList.add("svg-flare-active");
         
@@ -129,7 +145,7 @@ export default function FireworkParticles() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isMouseDownRef.current) return;
+      if (window.innerWidth < 768 || !isMouseDownRef.current) return;
 
       const colors = ["#a855f7", "#c084fc", "#d8b4fe", "#ffffff", "#f5d0fe"];
       const particles = particlesRef.current;
@@ -151,7 +167,7 @@ export default function FireworkParticles() {
     };
 
     const handleMouseUp = (e: MouseEvent) => {
-      if (!isMouseDownRef.current) return;
+      if (window.innerWidth < 768 || !isMouseDownRef.current) return;
       isMouseDownRef.current = false;
 
       const colors = ["#a855f7", "#c084fc", "#d8b4fe", "#ffffff", "#f5d0fe"];
@@ -192,7 +208,7 @@ export default function FireworkParticles() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-50"
+      className="pointer-events-none absolute inset-0 z-50 hidden md:block"
       style={{ mixBlendMode: "screen" }}
     />
   );

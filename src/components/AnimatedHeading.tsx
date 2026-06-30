@@ -28,24 +28,54 @@ export default function AnimatedHeading({ text, className = "" }: Props) {
     return "text-white";
   };
 
+  // Pre-calculate indices in a functionally pure way to satisfy immutability rules
+  const words = text.split(" ");
+  const wordBlocks = words.map((word, wIdx) => {
+    const startIdx = words
+      .slice(0, wIdx)
+      .reduce((sum, prevWord) => sum + prevWord.length + 1, 0);
+    return { word, startIdx };
+  });
+
   return (
     <h2
       className={`text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase cursor-default select-none pb-2 ${className}`}
       onMouseLeave={() => setHoveredIdx(null)}
     >
-      {text.split("").map((char, idx) => (
-        <span
-          key={idx}
-          onMouseEnter={() => setHoveredIdx(idx)}
-          className={`inline-block transition-all duration-300 ease-out ${getTextColor(idx)}`}
-          style={{
-            transform: getTranslation(idx),
-            minWidth: char === " " ? "0.3em" : "auto",
-          }}
-        >
-          {char}
-        </span>
-      ))}
+      {wordBlocks.map(({ word, startIdx }, wIdx) => {
+        return (
+          <span key={wIdx} className="inline-block whitespace-nowrap">
+            {word.split("").map((char, charIdx) => {
+              const idx = startIdx + charIdx;
+              return (
+                <span
+                  key={idx}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  className={`inline-block transition-all duration-300 ease-out ${getTextColor(idx)}`}
+                  style={{
+                    transform: getTranslation(idx),
+                  }}
+                >
+                  {char}
+                </span>
+              );
+            })}
+            {/* Draw a space at the end of the word (except the last word) */}
+            {wIdx < wordBlocks.length - 1 && (
+              <span
+                onMouseEnter={() => setHoveredIdx(startIdx + word.length)}
+                className="inline-block text-white"
+                style={{
+                  transform: getTranslation(startIdx + word.length),
+                  minWidth: "0.28em",
+                }}
+              >
+                {" "}
+              </span>
+            )}
+          </span>
+        );
+      })}
     </h2>
   );
 }
