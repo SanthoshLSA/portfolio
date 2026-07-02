@@ -4,6 +4,7 @@ import { User, MapPin, GraduationCap, Languages, Award } from "lucide-react";
 import { CardContent } from "@/components/ui/card";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function About() {
   const details = [
@@ -91,27 +92,28 @@ export default function About() {
             {/* Frosted Details Cards */}
             <div className="grid gap-6 sm:grid-cols-2 pt-6">
               {details.map((detail, idx) => (
-                <TiltCard
-                  key={idx}
-                  className="frosted-glass frosted-glass-hover group"
-                >
-                  <CardContent className="flex items-start space-x-4 p-5">
-                    <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors shrink-0">
-                      {detail.icon}
-                    </div>
-                    <div>
-                      <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
-                        {detail.label}
-                      </p>
-                      <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-1.5 font-display leading-tight">
-                        {detail.value}
-                      </p>
-                      <p className="text-xs sm:text-sm text-muted-foreground/80 mt-1 font-sans">
-                        {detail.subValue}
-                      </p>
-                    </div>
-                  </CardContent>
-                </TiltCard>
+                <ScrollReveal key={idx}>
+                  <TiltCard
+                    className="frosted-glass frosted-glass-hover group h-full"
+                  >
+                    <CardContent className="flex items-start space-x-4 p-5">
+                      <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors shrink-0">
+                        {detail.icon}
+                      </div>
+                      <div>
+                        <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
+                          {detail.label}
+                        </p>
+                        <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-1.5 font-display leading-tight">
+                          {detail.value}
+                        </p>
+                        <p className="text-xs sm:text-sm text-muted-foreground/80 mt-1 font-sans">
+                          {detail.subValue}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </TiltCard>
+                </ScrollReveal>
               ))}
             </div>
           </div>

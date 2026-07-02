@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Contact() {
   const [formState, setFormState] = React.useState({
@@ -89,146 +90,154 @@ export default function Contact() {
             </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
-              <TiltCard className="frosted-glass frosted-glass-hover">
-                <CardContent className="flex items-center space-x-4.5 p-6">
-                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
-                    <Mail className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Email</p>
-                    <a
-                      href="mailto:santhosh.ananth6@gmail.com"
-                      className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors break-all font-display"
-                    >
-                      santhosh.ananth6@gmail.com
-                    </a>
-                  </div>
-                </CardContent>
-              </TiltCard>
+              <ScrollReveal>
+                <TiltCard className="frosted-glass frosted-glass-hover">
+                  <CardContent className="flex items-center space-x-4.5 p-6">
+                    <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Email</p>
+                      <a
+                        href="mailto:santhosh.ananth6@gmail.com"
+                        className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors break-all font-display"
+                      >
+                        santhosh.ananth6@gmail.com
+                      </a>
+                    </div>
+                  </CardContent>
+                </TiltCard>
+              </ScrollReveal>
 
-              <TiltCard className="frosted-glass frosted-glass-hover">
-                <CardContent className="flex items-center space-x-4.5 p-6">
-                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Phone</p>
-                    <a
-                      href="tel:+918903266557"
-                      className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors font-display"
-                    >
-                      +91 890326 6557
-                    </a>
-                  </div>
-                </CardContent>
-              </TiltCard>
+              <ScrollReveal>
+                <TiltCard className="frosted-glass frosted-glass-hover">
+                  <CardContent className="flex items-center space-x-4.5 p-6">
+                    <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Phone</p>
+                      <a
+                        href="tel:+918903266557"
+                        className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors font-display"
+                      >
+                        +91 890326 6557
+                      </a>
+                    </div>
+                  </CardContent>
+                </TiltCard>
+              </ScrollReveal>
 
-              <TiltCard className="frosted-glass frosted-glass-hover">
-                <CardContent className="flex items-center space-x-4.5 p-6">
-                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Location</p>
-                    <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white font-display uppercase tracking-wider">
-                      Chennai, Tamil Nadu, India
-                    </span>
-                  </div>
-                </CardContent>
-              </TiltCard>
+              <ScrollReveal>
+                <TiltCard className="frosted-glass frosted-glass-hover">
+                  <CardContent className="flex items-center space-x-4.5 p-6">
+                    <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Location</p>
+                      <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white font-display uppercase tracking-wider">
+                        Chennai, Tamil Nadu, India
+                      </span>
+                    </div>
+                  </CardContent>
+                </TiltCard>
+              </ScrollReveal>
             </div>
           </div>
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <TiltCard className="frosted-glass frosted-glass-hover p-8 sm:p-10">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid gap-6 sm:grid-cols-2">
+            <ScrollReveal className="h-full">
+              <TiltCard className="frosted-glass frosted-glass-hover p-8 sm:p-10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        value={formState.name}
+                        onChange={handleChange}
+                        placeholder="John Doe"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        required
+                        value={formState.email}
+                        onChange={handleChange}
+                        placeholder="john@example.com"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
+                      />
+                    </div>
+                  </div>
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
-                      Your Name
+                    <label htmlFor="subject" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
+                      Subject
                     </label>
                     <input
                       type="text"
-                      id="name"
+                      id="subject"
                       required
-                      value={formState.name}
+                      value={formState.subject}
                       onChange={handleChange}
-                      placeholder="John Doe"
+                      placeholder="Project Inquiry / Internship Role"
                       className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
-                      Email Address
+                    <label htmlFor="message" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
+                      Message
                     </label>
-                    <input
-                      type="email"
-                      id="email"
+                    <textarea
+                      id="message"
                       required
-                      value={formState.email}
+                      rows={5}
+                      value={formState.message}
                       onChange={handleChange}
-                      placeholder="john@example.com"
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
+                      placeholder="Describe your request..."
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans resize-none"
                     />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    required
-                    value={formState.subject}
-                    onChange={handleChange}
-                    placeholder="Project Inquiry / Internship Role"
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={5}
-                    value={formState.message}
-                    onChange={handleChange}
-                    placeholder="Describe your request..."
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans resize-none"
-                  />
-                </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary hover:bg-primary/85 text-background font-bold tracking-widest uppercase text-sm hover:opacity-90 flex items-center justify-center gap-2 mt-4 py-6 rounded-xl border-0 transition-opacity"
-                >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" /> Send Message
-                    </>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary hover:bg-primary/85 text-background font-bold tracking-widest uppercase text-sm hover:opacity-90 flex items-center justify-center gap-2 mt-4 py-6 rounded-xl border-0 transition-opacity"
+                  >
+                    {isSubmitting ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" /> Send Message
+                      </>
+                    )}
+                  </Button>
+
+                  {success && (
+                    <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
+                      Message sent successfully! I will get back to you shortly.
+                    </div>
                   )}
-                </Button>
 
-                {success && (
-                  <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
-                    Message sent successfully! I will get back to you shortly.
-                  </div>
-                )}
-
-                {error && (
-                  <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
-                    Failed to send message. Please verify your access key.
-                  </div>
-                )}
-              </form>
-            </TiltCard>
+                  {error && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
+                      Failed to send message. Please verify your access key.
+                    </div>
+                  )}
+                </form>
+              </TiltCard>
+            </ScrollReveal>
           </div>
         </div>
       </div>

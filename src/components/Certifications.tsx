@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Certifications() {
   const certificationsData = [
@@ -56,55 +57,56 @@ export default function Certifications() {
         {/* Certifications Grid */}
         <div className="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto">
           {certificationsData.map((cert, idx) => (
-            <TiltCard
-              key={idx}
-              className="frosted-glass frosted-glass-hover flex flex-col justify-between group"
-            >
-              <CardContent className="p-8 flex-grow flex flex-col justify-between">
-                <div>
-                  {/* Top line: Icon & Date */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 shrink-0">
-                      {cert.icon}
+            <ScrollReveal key={idx}>
+              <TiltCard
+                className="frosted-glass frosted-glass-hover flex flex-col justify-between group"
+              >
+                <CardContent className="p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    {/* Top line: Icon & Date */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 shrink-0">
+                        {cert.icon}
+                      </div>
+                      <span className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-md border border-white/5">
+                        {cert.date}
+                      </span>
                     </div>
-                    <span className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-md border border-white/5">
-                      {cert.date}
-                    </span>
+
+                    {/* Title & Organization */}
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
+                      {cert.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground/80 font-medium mt-3 flex items-center gap-2 font-display tracking-wider uppercase">
+                      <Landmark className="h-4 w-4 shrink-0 text-primary/80" />
+                      {cert.organization}
+                    </p>
+
+                    {/* Badges */}
+                    <div className="flex flex-wrap gap-2.5 mt-5 mb-8">
+                      <Badge variant="outline" className="bg-primary/5 border-primary/25 text-primary text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-bold">
+                        {cert.achievement}
+                      </Badge>
+                      <Badge variant="secondary" className="bg-secondary/40 border border-white/5 text-muted-foreground text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-semibold">
+                        {cert.score}
+                      </Badge>
+                    </div>
                   </div>
 
-                  {/* Title & Organization */}
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
-                    {cert.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground/80 font-medium mt-3 flex items-center gap-2 font-display tracking-wider uppercase">
-                    <Landmark className="h-4 w-4 shrink-0 text-primary/80" />
-                    {cert.organization}
-                  </p>
-
-                  {/* Badges */}
-                  <div className="flex flex-wrap gap-2.5 mt-5 mb-8">
-                    <Badge variant="outline" className="bg-primary/5 border-primary/25 text-primary text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-bold">
-                      {cert.achievement}
-                    </Badge>
-                    <Badge variant="secondary" className="bg-secondary/40 border border-white/5 text-muted-foreground text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-semibold">
-                      {cert.score}
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Verification Link Button */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold mt-auto flex items-center justify-center py-5"
-                  asChild
-                >
-                  <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
-                    View Certificate
-                  </a>
-                </Button>
-              </CardContent>
-            </TiltCard>
+                  {/* Verification Link Button */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold mt-auto flex items-center justify-center py-5"
+                    asChild
+                  >
+                    <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+                      View Certificate
+                    </a>
+                  </Button>
+                </CardContent>
+              </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

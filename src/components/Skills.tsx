@@ -4,6 +4,7 @@ import { CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Skills() {
   const skillCategories = [
@@ -52,35 +53,36 @@ export default function Skills() {
         {/* Skills Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
           {skillCategories.map((category, idx) => (
-            <TiltCard
-              key={idx}
-              className="frosted-glass frosted-glass-hover flex flex-col h-full group text-center"
-            >
-              <CardHeader className="p-6 pb-4 flex flex-col items-center">
-                <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 mb-3">
-                  {category.icon}
-                </div>
-                <CardTitle className="text-lg font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">
-                  {category.title}
-                </CardTitle>
-                <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-2">
-                  {category.description}
-                </p>
-              </CardHeader>
-              <CardContent className="p-6 pt-0 flex-grow">
-                <div className="flex flex-wrap justify-center gap-2.5">
-                  {category.skills.map((skill, sIdx) => (
-                    <Badge
-                      key={sIdx}
-                      variant="secondary"
-                      className="bg-secondary/30 hover:bg-primary/25 hover:text-primary border border-white/5 hover:border-primary/35 transition-all duration-200 text-xs uppercase font-display tracking-widest py-1.5 px-3 font-semibold text-muted-foreground"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </TiltCard>
+            <ScrollReveal key={idx}>
+              <TiltCard
+                className="frosted-glass frosted-glass-hover flex flex-col h-full group text-center"
+              >
+                <CardHeader className="p-6 pb-4 flex flex-col items-center">
+                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 mb-3">
+                    {category.icon}
+                  </div>
+                  <CardTitle className="text-lg font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">
+                    {category.title}
+                  </CardTitle>
+                  <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-2">
+                    {category.description}
+                  </p>
+                </CardHeader>
+                <CardContent className="p-6 pt-0 flex-grow">
+                  <div className="flex flex-wrap justify-center gap-2.5">
+                    {category.skills.map((skill, sIdx) => (
+                      <Badge
+                        key={sIdx}
+                        variant="secondary"
+                        className="bg-secondary/30 hover:bg-primary/25 hover:text-primary border border-white/5 hover:border-primary/35 transition-all duration-200 text-xs uppercase font-display tracking-widest py-1.5 px-3 font-semibold text-muted-foreground"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

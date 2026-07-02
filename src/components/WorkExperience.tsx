@@ -4,6 +4,7 @@ import { CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function WorkExperience() {
   const experiences = [
@@ -41,54 +42,55 @@ export default function WorkExperience() {
         {/* Experience Cards */}
         <div className="max-w-6xl mx-auto space-y-8">
           {experiences.map((exp, idx) => (
-            <TiltCard
-              key={idx}
-              className="frosted-glass frosted-glass-hover group"
-            >
-              <CardContent className="p-8 sm:p-10">
-                {/* Header Row */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-white/5 pb-6 mb-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors font-display tracking-wide uppercase leading-snug">
-                      {exp.role}
-                    </h3>
-                    <div className="flex items-center gap-2.5 mt-2.5 text-muted-foreground text-sm">
-                      <Building className="h-4.5 w-4.5 text-primary/80" />
-                      <span className="font-semibold text-muted-foreground/90 font-display text-xs sm:text-sm uppercase tracking-wider">
-                        {exp.company}
-                      </span>
+            <ScrollReveal key={idx}>
+              <TiltCard
+                className="frosted-glass frosted-glass-hover group"
+              >
+                <CardContent className="p-8 sm:p-10">
+                  {/* Header Row */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-white/5 pb-6 mb-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors font-display tracking-wide uppercase leading-snug">
+                        {exp.role}
+                      </h3>
+                      <div className="flex items-center gap-2.5 mt-2.5 text-muted-foreground text-sm">
+                        <Building className="h-4.5 w-4.5 text-primary/80" />
+                        <span className="font-semibold text-muted-foreground/90 font-display text-xs sm:text-sm uppercase tracking-wider">
+                          {exp.company}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-primary font-semibold text-xs sm:text-sm bg-primary/5 border border-primary/20 px-4 py-2 rounded-lg shrink-0 self-start sm:self-center font-display tracking-widest uppercase">
+                      <Calendar className="h-4 w-4" />
+                      <span>{exp.date}</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-primary font-semibold text-xs sm:text-sm bg-primary/5 border border-primary/20 px-4 py-2 rounded-lg shrink-0 self-start sm:self-center font-display tracking-widest uppercase">
-                    <Calendar className="h-4 w-4" />
-                    <span>{exp.date}</span>
+
+                  {/* Highlights list */}
+                  <ul className="space-y-4 text-base text-muted-foreground">
+                    {exp.highlights.map((bullet, bIdx) => (
+                      <li key={bIdx} className="flex items-start">
+                        <ArrowRight className="h-4.5 w-4.5 text-primary shrink-0 mr-3 mt-1" />
+                        <span className="leading-relaxed">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Tech tags */}
+                  <div className="flex flex-wrap justify-center gap-2.5 mt-8">
+                    {exp.skills.map((skill, sIdx) => (
+                      <Badge
+                        key={sIdx}
+                        variant="secondary"
+                        className="bg-secondary/40 text-[10px] sm:text-xs uppercase font-display tracking-wider text-muted-foreground border border-border/50 hover:border-primary/30 transition-all duration-200 py-1.5 px-3"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
                   </div>
-                </div>
-
-                {/* Highlights list */}
-                <ul className="space-y-4 text-base text-muted-foreground">
-                  {exp.highlights.map((bullet, bIdx) => (
-                    <li key={bIdx} className="flex items-start">
-                      <ArrowRight className="h-4.5 w-4.5 text-primary shrink-0 mr-3 mt-1" />
-                      <span className="leading-relaxed">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tech tags */}
-                <div className="flex flex-wrap justify-center gap-2.5 mt-8">
-                  {exp.skills.map((skill, sIdx) => (
-                    <Badge
-                      key={sIdx}
-                      variant="secondary"
-                      className="bg-secondary/40 text-[10px] sm:text-xs uppercase font-display tracking-wider text-muted-foreground border border-border/50 hover:border-primary/30 transition-all duration-200 py-1.5 px-3"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </TiltCard>
+                </CardContent>
+              </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

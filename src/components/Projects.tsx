@@ -2,6 +2,7 @@ import * as React from "react";
 import { FolderGit2, Briefcase, ShoppingCart, Film, MessageSquare, Activity, Gamepad2 } from "lucide-react";
 import ProjectCard, { ProjectProps } from "./ProjectCard";
 import AnimatedHeading from "./AnimatedHeading";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Projects() {
   const projectsData: (Omit<ProjectProps, "icon"> & { iconName: string })[] = [
@@ -120,16 +121,17 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {projectsData.map((project, idx) => (
-            <ProjectCard
-              key={idx}
-              title={project.title}
-              date={project.date}
-              description={project.description}
-              tags={project.tags}
-              icon={getIcon(project.iconName)}
-              githubUrl={project.githubUrl}
-              demoUrl={project.demoUrl}
-            />
+            <ScrollReveal key={idx}>
+              <ProjectCard
+                title={project.title}
+                date={project.date}
+                description={project.description}
+                tags={project.tags}
+                icon={getIcon(project.iconName)}
+                githubUrl={project.githubUrl}
+                demoUrl={project.demoUrl}
+              />
+            </ScrollReveal>
           ))}
         </div>
       </div>

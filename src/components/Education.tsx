@@ -3,6 +3,7 @@ import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { CardContent } from "@/components/ui/card";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Education() {
   const educationData = [
@@ -49,47 +50,48 @@ export default function Education() {
         {/* Education Cards Grid */}
         <div className="grid gap-8 md:grid-cols-2 max-w-7xl mx-auto">
           {educationData.map((edu, idx) => (
-            <TiltCard
-              key={idx}
-              className="frosted-glass frosted-glass-hover flex flex-col group"
-            >
-              <CardContent className="p-8 flex-grow flex flex-col justify-between">
-                <div>
-                  {/* Date & Location Header */}
-                  <div className="flex flex-wrap items-center justify-between text-[11px] sm:text-xs uppercase font-display tracking-wider text-muted-foreground gap-3 border-b border-white/5 pb-4 mb-5">
-                    <div className="flex items-center gap-2 font-semibold">
-                      <Calendar className="h-4 w-4 text-primary/80" />
-                      <span>{edu.date}</span>
+            <ScrollReveal key={idx}>
+              <TiltCard
+                className="frosted-glass frosted-glass-hover flex flex-col group"
+              >
+                <CardContent className="p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    {/* Date & Location Header */}
+                    <div className="flex flex-wrap items-center justify-between text-[11px] sm:text-xs uppercase font-display tracking-wider text-muted-foreground gap-3 border-b border-white/5 pb-4 mb-5">
+                      <div className="flex items-center gap-2 font-semibold">
+                        <Calendar className="h-4 w-4 text-primary/80" />
+                        <span>{edu.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2 font-semibold">
+                        <MapPin className="h-4 w-4 text-primary/80" />
+                        <span>{edu.location}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 font-semibold">
-                      <MapPin className="h-4 w-4 text-primary/80" />
-                      <span>{edu.location}</span>
-                    </div>
+
+                    {/* Degree & Institution */}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-sm font-semibold text-muted-foreground/80 mt-1.5 font-display tracking-wider uppercase">
+                      {edu.institution}
+                    </p>
+
+                    {/* Bullets */}
+                    <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base text-muted-foreground leading-relaxed mt-5 font-sans">
+                      {edu.highlights.map((bullet, bIdx) => (
+                        <li key={bIdx}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* Degree & Institution */}
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-sm font-semibold text-muted-foreground/80 mt-1.5 font-display tracking-wider uppercase">
-                    {edu.institution}
-                  </p>
-
-                  {/* Bullets */}
-                  <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base text-muted-foreground leading-relaxed mt-5 font-sans">
-                    {edu.highlights.map((bullet, bIdx) => (
-                      <li key={bIdx}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Grade Box */}
-                <div className="mt-8 flex items-center gap-2.5 text-xs sm:text-sm uppercase font-display font-extrabold text-primary bg-primary/5 border border-primary/25 px-4.5 py-2.5 rounded-lg w-fit">
-                  <Award className="h-4.5 w-4.5" />
-                  <span>{edu.grade}</span>
-                </div>
-              </CardContent>
-            </TiltCard>
+                  {/* Grade Box */}
+                  <div className="mt-8 flex items-center gap-2.5 text-xs sm:text-sm uppercase font-display font-extrabold text-primary bg-primary/5 border border-primary/25 px-4.5 py-2.5 rounded-lg w-fit">
+                    <Award className="h-4.5 w-4.5" />
+                    <span>{edu.grade}</span>
+                  </div>
+                </CardContent>
+              </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

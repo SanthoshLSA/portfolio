@@ -3,6 +3,7 @@ import { Trophy, Zap, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 export default function Achievements() {
   const cpPoints = [
@@ -49,70 +50,74 @@ export default function Achievements() {
         <div className="grid gap-8 lg:grid-cols-12 max-w-7xl mx-auto">
           {/* Left Column: LeetCode & Coding */}
           <div className="lg:col-span-5 flex flex-col justify-between">
-            <TiltCard className="frosted-glass frosted-glass-hover p-8 flex-grow flex flex-col justify-between group">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <Terminal className="h-6 w-6 text-primary" />
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Competitive Coding</h3>
+            <ScrollReveal className="h-full flex flex-col">
+              <TiltCard className="frosted-glass frosted-glass-hover p-8 flex-grow flex flex-col justify-between group">
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <Terminal className="h-6 w-6 text-primary" />
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Competitive Coding</h3>
+                  </div>
+
+                  <div className="bg-secondary/20 border border-white/5 rounded-xl p-5 text-center mb-8">
+                    <p className="text-4xl font-extrabold text-primary font-display tracking-tight">500+</p>
+                    <p className="text-xs uppercase font-display tracking-wider text-muted-foreground font-semibold mt-2">Problems Solved Across LeetCode, HackerRank, & Codeforces</p>
+                  </div>
+
+                  <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed font-sans">
+                    {cpPoints.map((point, pIdx) => (
+                      <li key={pIdx}>{point}</li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="bg-secondary/20 border border-white/5 rounded-xl p-5 text-center mb-8">
-                  <p className="text-4xl font-extrabold text-primary font-display tracking-tight">500+</p>
-                  <p className="text-xs uppercase font-display tracking-wider text-muted-foreground font-semibold mt-2">Problems Solved Across LeetCode, HackerRank, & Codeforces</p>
+                <div className="mt-10">
+                  <Button variant="outline" size="sm" className="w-full border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold py-5" asChild>
+                    <a href="https://leetcode.com/SanthoshLegendSA/" target="_blank" rel="noopener noreferrer">
+                      View LeetCode Profile
+                    </a>
+                  </Button>
                 </div>
-
-                <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed font-sans">
-                  {cpPoints.map((point, pIdx) => (
-                    <li key={pIdx}>{point}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-10">
-                <Button variant="outline" size="sm" className="w-full border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold py-5" asChild>
-                  <a href="https://leetcode.com/SanthoshLegendSA/" target="_blank" rel="noopener noreferrer">
-                    View LeetCode Profile
-                  </a>
-                </Button>
-              </div>
-            </TiltCard>
+              </TiltCard>
+            </ScrollReveal>
           </div>
 
           {/* Right Column: Contests & Hackathons */}
           <div className="lg:col-span-7 space-y-4">
-            <TiltCard className="frosted-glass frosted-glass-hover p-8 h-full flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <Zap className="h-6 w-6 text-primary" />
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Contests & Hackathons</h3>
-                </div>
+            <ScrollReveal className="h-full">
+              <TiltCard className="frosted-glass frosted-glass-hover p-8 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <Zap className="h-6 w-6 text-primary" />
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Contests & Hackathons</h3>
+                  </div>
 
-                <div className="space-y-5">
-                  {accomplishments.map((item, idx) => (
-                    <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 rounded-xl bg-secondary/30 border border-white/5 hover:border-primary/20 transition-all duration-200 gap-5">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2.5 flex-wrap">
-                          <h4 className="text-base font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">{item.title}</h4>
-                          <span className="text-[9px] font-semibold text-primary bg-primary/5 border border-primary/25 px-2.5 py-0.5 rounded-full uppercase font-display tracking-wider">
-                            {item.badge}
-                          </span>
+                  <div className="space-y-5">
+                    {accomplishments.map((item, idx) => (
+                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 rounded-xl bg-secondary/30 border border-white/5 hover:border-primary/20 transition-all duration-200 gap-5">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2.5 flex-wrap">
+                            <h4 className="text-base font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">{item.title}</h4>
+                            <span className="text-[9px] font-semibold text-primary bg-primary/5 border border-primary/25 px-2.5 py-0.5 rounded-full uppercase font-display tracking-wider">
+                              {item.badge}
+                            </span>
+                          </div>
+                          <p className="text-xs sm:text-sm font-bold text-muted-foreground font-display uppercase tracking-widest">{item.role} • <span className="font-normal text-muted-foreground/85 font-sans lowercase tracking-normal">{item.meta}</span></p>
+                          <p className="text-sm text-muted-foreground/80 leading-relaxed font-sans mt-1.5">{item.desc}</p>
                         </div>
-                        <p className="text-xs sm:text-sm font-bold text-muted-foreground font-display uppercase tracking-widest">{item.role} • <span className="font-normal text-muted-foreground/85 font-sans lowercase tracking-normal">{item.meta}</span></p>
-                        <p className="text-sm text-muted-foreground/80 leading-relaxed font-sans mt-1.5">{item.desc}</p>
+                        
+                        {item.verifyUrl && (
+                          <Button variant="outline" size="sm" className="border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold shrink-0 py-5" asChild>
+                            <a href={item.verifyUrl} target="_blank" rel="noopener noreferrer">
+                              View Certificate
+                            </a>
+                          </Button>
+                        )}
                       </div>
-                      
-                      {item.verifyUrl && (
-                        <Button variant="outline" size="sm" className="border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold shrink-0 py-5" asChild>
-                          <a href={item.verifyUrl} target="_blank" rel="noopener noreferrer">
-                            View Certificate
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </TiltCard>
+              </TiltCard>
+            </ScrollReveal>
           </div>
         </div>
       </div>
